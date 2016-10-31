@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+<org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="'" org.eventb.core.assignment="stacklist≔∅" org.eventb.core.label="act1"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="query≔FALSE" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="element:∈ELEMENT" org.eventb.core.label="act4"/>
+</org.eventb.core.event>
+<org.eventb.core.refinesMachine name="(" org.eventb.core.target="Stack"/>
+<org.eventb.core.variable name=")" org.eventb.core.identifier="stacklist"/>
+<org.eventb.core.invariant name="*" org.eventb.core.label="inv1" org.eventb.core.predicate="stacklist ∈ ℕ1 ⇸ ELEMENT"/>
+<org.eventb.core.invariant name="+" org.eventb.core.label="inv2" org.eventb.core.predicate="card(ran(stacklist)) ≤ maxsize"/>
+<org.eventb.core.invariant name="-" org.eventb.core.label="inv4" org.eventb.core.predicate="card(dom(stacklist))+1 ≤ maxsize"/>
+<org.eventb.core.invariant name="," org.eventb.core.label="inv3" org.eventb.core.predicate="finite(stacklist)"/>
+<org.eventb.core.event name="/" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="push">
+<org.eventb.core.action name="'" org.eventb.core.assignment="stacklist(card(dom(stacklist))+1)≔e" org.eventb.core.label="act1"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="e∈ELEMENT" org.eventb.core.theorem="true"/>
+<org.eventb.core.refinesEvent name="*" org.eventb.core.target="push"/>
+<org.eventb.core.parameter name="+" org.eventb.core.identifier="e"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="." org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="pop">
+<org.eventb.core.action name="(" org.eventb.core.assignment="element≔ stacklist(card(dom(stacklist)))" org.eventb.core.label="act1"/>
+<org.eventb.core.guard name=")" org.eventb.core.label="grd1" org.eventb.core.predicate="card(dom(stacklist))&gt;0"/>
+<org.eventb.core.refinesEvent name="+" org.eventb.core.target="pop"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="stacklist≔ {card(dom(stacklist))} ⩤ stacklist" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="empty">
+<org.eventb.core.action name="(" org.eventb.core.assignment="query :∣ (card(dom(stacklist)) = 0 ⇒ query' = TRUE) ∧ (card(dom(stacklist)) ≠ 0 ⇒ query' = FALSE)" org.eventb.core.label="act1"/>
+<org.eventb.core.refinesEvent name="+" org.eventb.core.target="empty"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="full">
+<org.eventb.core.action name="'" org.eventb.core.assignment="query :∣ (card(dom(stacklist)) = maxsize ⇒ query' = TRUE) ∧ (card(dom(stacklist)) ≠ maxsize ⇒ query' = FALSE)" org.eventb.core.label="act1"/>
+<org.eventb.core.refinesEvent name="*" org.eventb.core.target="full"/>
+</org.eventb.core.event>
+<org.eventb.core.variable name="3" org.eventb.core.identifier="query"/>
+<org.eventb.core.invariant name="4" org.eventb.core.label="inv5" org.eventb.core.predicate="query∈BOOL"/>
+<org.eventb.core.invariant name="5" org.eventb.core.label="inv6" org.eventb.core.predicate="card(ran(stacklist))=card(ran(stack)) "/>
+<org.eventb.core.variable name="6" org.eventb.core.identifier="element"/>
+<org.eventb.core.seesContext name="7" org.eventb.core.target="Stack_ctx"/>
+</org.eventb.core.machineFile>
